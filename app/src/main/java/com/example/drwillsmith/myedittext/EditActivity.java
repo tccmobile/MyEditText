@@ -1,5 +1,8 @@
 package com.example.drwillsmith.myedittext;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class EditActivity extends AppCompatActivity {
@@ -14,7 +18,9 @@ public class EditActivity extends AppCompatActivity {
     Button helloButton;
     EditText ageText;
     TextView greetingText;
+    ImageView picture;
     int age;
+    int picVal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +30,10 @@ public class EditActivity extends AppCompatActivity {
         helloButton = (Button)findViewById(R.id.button);
         ageText = (EditText)findViewById(R.id.editText);
         greetingText  = (TextView)findViewById(R.id.textView);
+        picture = (ImageView)findViewById(R.id.imageView);
+
+        picture.setImageResource(R.drawable.dog7);
+        picVal=0;
 
 
         helloButton.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +46,22 @@ public class EditActivity extends AppCompatActivity {
             }
         });
 
+        picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (picVal==0){
+                    picture.setImageResource(R.drawable.will);
+                    picVal=1;}
+                else {
+                    picture.setImageResource(R.drawable.dog7);
+                    picVal=0;
+                }
+            }
+        });
+
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
