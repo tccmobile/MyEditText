@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class EditActivity extends AppCompatActivity {
@@ -18,9 +19,11 @@ public class EditActivity extends AppCompatActivity {
     Button helloButton;
     EditText ageText;
     TextView greetingText;
+    TextView scrollResult;
     ImageView picture;
     int age;
     int picVal;
+    SeekBar ageScroller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,9 @@ public class EditActivity extends AppCompatActivity {
         ageText = (EditText)findViewById(R.id.editText);
         greetingText  = (TextView)findViewById(R.id.textView);
         picture = (ImageView)findViewById(R.id.imageView);
+        ageScroller = (SeekBar)findViewById(R.id.seekBar);
+        scrollResult = (TextView)findViewById(R.id.scrollOutput);
+        ageScroller.setMax(110);
 
         picture.setImageResource(R.drawable.dog7);
         picVal=0;
@@ -56,6 +62,24 @@ public class EditActivity extends AppCompatActivity {
                     picture.setImageResource(R.drawable.dog7);
                     picVal=0;
                 }
+            }
+        });
+
+        ageScroller.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                scrollResult.setText("You age : "+progress);
+                greetingText.setText("Dog age: " +(progress/7));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
 
